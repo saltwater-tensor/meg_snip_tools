@@ -1,7 +1,7 @@
 function montage =  rev_abbot_montage_wo_badchans(bad_chans)
 %returns a montage for lfp channel rereferencing to be used by ft_preprocessing
 
-
+bad_chans = strsplit(bad_chans,',');
 % %standard montage for LFP-MEG measurements with Abbott Infinity system
 % %assuming the following channel config:
 lfp_labels = {
@@ -64,7 +64,7 @@ standard_inf.new_lfp_labels = {
     'LFP-left-3A-4';
     'LFP-left-3B-4';
     'LFP-left-3C-4'};
- 
+
 good_inds = ~or(contains(standard_inf.ref_scheme(:,1),bad_chans),contains(standard_inf.ref_scheme(:,2),bad_chans));
 ref_scheme = standard_inf.ref_scheme(good_inds,:);
 new_labels = standard_inf.new_lfp_labels(good_inds);
